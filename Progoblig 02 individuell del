@@ -1,0 +1,87 @@
+fun draw() -> Image:
+  
+  #NorgeRec
+  
+  red = rectangle(220, 160, "solid", "red")
+ 
+  white_h = rectangle(40, 160, "solid", "white")
+  white_v = rectangle(220, 40, "solid", "white")
+  blue_h = rectangle(220, 20, "solid", "medium-blue")
+  blue_v = rectangle(20, 160, "solid", "medium-blue")
+  
+  #DanmarkRec
+  dwhite_h = rectangle(30, 160, "solid", "white")
+  dwhite_v = rectangle(220, 30, "solid", "white")
+  
+  #SverigeRec
+  blue_f = rectangle(320, 200, "solid", "royal-blue")
+  yellow_h = rectangle(320, 40, "solid", "yellow")
+  yellow_v = rectangle(40, 200, "solid", "yellow")
+  
+  #IslandRec
+  
+  blue_i = rectangle(220, 160, "solid", "navy")
+  red_hi = rectangle(20, 160, "solid", "red")
+  red_vi = rectangle(220, 20, "solid", "red")
+  white_hi = rectangle(220, 40, "solid", "white")
+  white_vi = rectangle(40, 160, "solid", "white")
+  
+  
+  #FinlandRec
+  white = rectangle(220, 130, "solid", "white")
+  blue_fh = rectangle(220, 35, "solid", "medium-blue")
+  blue_fv = rectangle(35, 130, "solid", "medium-blue")
+ 
+  
+  #FeroyeneRec
+  whiteF = rectangle(220, 160, "solid", "white")
+  blue_foh = rectangle(40, 160, "solid", "navy")
+  blue_fov = rectangle(220, 40, "solid", "navy")
+  
+  bakgrunn = empty-scene(400, 1050)
+
+  
+###FLAGG
+  
+  #Norge
+put-image(blue_v, 80, 80,
+put-image(blue_h, 110, 80,
+put-image(white_h, 80, 80,
+put-image(white_v, 110, 80,
+put-image(red, 110, 80,
+            
+#Danmark
+put-image(dwhite_h, 80, 250,
+put-image(dwhite_v, 110, 250,         
+put-image(red, 110, 250,
+                                                 
+#Sverige
+put-image(yellow_v, 100, 440,
+put-image(yellow_h, 110, 440,                  
+put-image(blue_f, 110, 440,
+                        
+                        
+#Island
+put-image(red_hi, 80, 630,
+put-image(red_vi, 110, 630,
+put-image(white_hi, 110, 630,
+put-image(white_vi, 80, 630,
+put-image(blue_i, 110, 630,                        
+                        
+                        
+#Finland
+put-image(blue_fh, 110, 785,                                  
+put-image(blue_fv, 80, 785,
+put-image(white, 110, 785,
+     
+                                        
+#Færøyene
+put-image(red_hi, 80, 940,
+put-image(red_vi, 110, 940,
+put-image(blue_foh, 80, 940, 
+put-image(blue_fov, 110, 940,
+put-image(whiteF, 110, 940, 
+                                                                                     
+                                                                                      bakgrunn))))))))))))))))))))))))
+ 
+end
