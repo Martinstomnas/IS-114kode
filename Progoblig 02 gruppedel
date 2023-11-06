@@ -1,0 +1,163 @@
+#### Spilleregler:
+Spilleregler= table: Spilleregler :: String
+  row: 
+    "Målet: flytte hele tårnet over til HØYRE pinne"
+  row: 
+    "Bare én disk skal flyttes av gangen"
+  row: 
+    "En større disk kan aldri ligge oppå en mindre"
+  row: 
+    "Bruk kodene i tabellen under"
+  row:
+    "Eksempel: move([disk-navn], [posisjon])"
+  row: 
+    "For å starte på nytt: nytt-spill()"
+
+end
+
+Spilleregler
+##############
+
+#### Koder 
+Kodetabell= table: Koder :: String
+  row:
+    "rød disk = red"
+  row: 
+    "grønn disk = green"
+  row: 
+    "blå disk = blue"
+  row: 
+    "oransje disk = orange"
+  row:
+    "venstre pinne = v"
+  row: 
+    "midt pinne = m"
+  row: 
+    "høyre pinne = h"
+ 
+end
+
+Kodetabell
+
+##DATA definisjoner
+
+data Disk:
+    disk(drawing :: Image, name :: String, ref pos :: String)
+end
+
+
+#Disk variabler
+
+orange = disk(circle(50, "solid", "orange"), "orange", "l")
+blue = disk(circle(40, "solid", "blue"), "blue", "l")
+green = disk(circle(30, "solid", "green"), "green", "l")
+red = disk(circle(20, "solid", "red"), "red", "l")
+
+# Pinnene
+stick = disk(circle(10, "solid", "black"), "stick", "l")
+
+
+# Posisjoner og størrelser
+sceneWidth = 500
+sceneHeight = 120
+v = 100
+m = 250
+h = 400
+heightPosition = 60
+
+
+# Spillets oppstart vPinne = venstre, mPinne = midterste-pinne, hPinne = høyre-pinne
+var brett = table: vPinne :: List, mPinne :: List, hPinne :: List
+  row: [list: red, green, blue, orange], empty, empty
+end
+
+
+#Brett - oppstart brett
+##Posisjoner v = venstre, m = midt, h = høyre
+
+var positions = [list: v, v, v, v]
+
+
+##Tegn bord
+fun draw-board():
+
+  put-image(stick.drawing, h, heightPosition,
+    put-image(stick.drawing, m, heightPosition,
+      put-image(stick.drawing, v, heightPosition,
+        
+        put-image(red.drawing, 
+          positions.get(0), heightPosition,
+          put-image(green.drawing, 
+            positions.get(1), heightPosition,
+            put-image(blue.drawing, 
+              positions.get(2), heightPosition,
+              put-image(orange.drawing, 
+                positions.get(3), heightPosition,
+ 
+        put-image(rectangle(sceneWidth, sceneHeight, "solid", "white"), (sceneWidth / 2), (sceneHeight / 2),
+                  empty-scene(sceneWidth, sceneHeight)))))))))
+end
+
+######MOVE
+fun move(chosenRing, newPosition):
+  isLegal = true 
+  if chosenRing.name == "red" block:
+    positions := positions.set(0, newPosition)
+    draw-board()
+  else: 
+    if chosenRing.name == "green" block:
+    positions := positions.set(1, newPosition)
+    draw-board()
+    else: 
+      if chosenRing.name == "blue" block:
+        positions := positions.set(2, newPosition)
+        draw-board()
+      else: 
+        if chosenRing.name == "orange" block:
+          positions := positions.set(3, newPosition)
+          draw-board()
+        else:
+          "RIP"
+        end
+      end
+    end
+  end
+end
+  
+
+
+#Oppstart
+draw-board()
+
+
+##NYTT SPILL
+##Setter alle diskene tilbake til startposisjon (venstre pinne)
+
+fun nytt-spill():
+  v_kolonne = select vPinne from brett end
+  m_kolonne = select mPinne from brett end
+  h_kolonne = select hPinne from brett end
+  
+  leftStick = v_kolonne.row-n(0)["vPinne"]
+  middleStick = m_kolonne.row-n(0)["mPinne"]
+  rightStick = h_kolonne.row-n(0)["hPinne"]
+  
+  put-image(stick.drawing, h, heightPosition,
+    put-image(stick.drawing, m, heightPosition,
+      put-image(stick.drawing, v, heightPosition,
+       
+        put-image(red.drawing, 
+          v, heightPosition,
+          put-image(green.drawing, 
+            v, heightPosition,
+            put-image(blue.drawing, 
+              v, heightPosition,
+              put-image(orange.drawing, 
+                v, heightPosition,
+                
+        put-image(rectangle(sceneWidth, sceneHeight, "solid", "white"), (sceneWidth / 2), (sceneHeight / 2),
+                  empty-scene(sceneWidth, sceneHeight)))))))))
+end
+
+
+
